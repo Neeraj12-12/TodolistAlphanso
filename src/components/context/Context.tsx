@@ -8,7 +8,7 @@ interface TodoProps {
   addTodo: (title: string) => void;
   toggleTodo: (id: string) => void;
   deleteTodo: (id: string) => void;
-  filterList: (filter: string) => void;
+
 }
 
 export const TodoContext = createContext<TodoProps | null>(null);
@@ -26,9 +26,6 @@ const TodoReducer = (state: iEachTask[], action: any): iEachTask[] => {
       );
     case "DELETE_TODO":
       return state.filter((task) => task.id !== action.payload);
-    case "FILTER_TODO_LIST":
-   
-      return state;
     default:
       return state;
   }
@@ -59,13 +56,10 @@ export const TodoProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: "DELETE_TODO", payload: id });
   };
 
-  const filterList = (filter: string) => {
-    dispatch({ type: "FILTER_TODO_LIST", payload: filter });
-  };
 
   return (
     <TodoContext.Provider
-      value={{ TodoListArray, addTodo, toggleTodo, deleteTodo, filterList }}
+      value={{ TodoListArray, addTodo, toggleTodo, deleteTodo }}
     >
       {children}
     </TodoContext.Provider>
