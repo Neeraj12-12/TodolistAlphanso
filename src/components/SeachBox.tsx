@@ -20,6 +20,8 @@ const SearchBox = ({ todoList, onSearchResults, setLoading }: SearchBoxProps) =>
         filteredList = filteredList.filter((task) =>
           task.title.toLowerCase().includes(searchInput.toLowerCase())
         );
+      }else{
+        filteredList = todoList;
       }
 
       if (filter === "Completed") {
