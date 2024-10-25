@@ -60,6 +60,12 @@ export const TodoForm = forwardRef((props, ref) => {
               </h3>
               <form
                 onSubmit={() => {
+                  if(input.length === 0)
+                  {
+                    alert("Please enter a task Title");
+                    return;
+                  }
+
                   context?.addTodo(input);
                   setInput("");
                   setIsOpen(false);
